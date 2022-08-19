@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class='container'>
+  <h1 class='text-danger text-center'>Your Booking Details Here</h1>
+  <title>Booked Events</title>
+  {% for book in data %}
+  <div class='row'>  
+    <div class="col-1">
+      <div class="card" style="width: 18rem;">
+  
+      <div class="card-body card-center">
+        <h5 class="card-header">UserName : <b class='text-info'>{{user.username}}</b></h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{book.Name}}</li>
+        <li class="list-group-item">{{book.Date}}</li>
+        <li class="list-group-item">{{book.Event}}</li>
+        <li class="list-group-item">{{book.Pepole}}</li>
+        <li class="list-group-item">{{book.Message}}</li>
+        <li class="list-group-item">{{book.Location}}</li>
+      </ul>
+      </div>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+
+  {% endblock %}
+  
+  </div>

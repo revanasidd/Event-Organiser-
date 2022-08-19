@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<style>
+body{
+  background-color:rgb(235, 113, 113);
+}
+</style>
+
+
+<div class="container" style='background-color:darkcyan'>
+  <h1 class='text-center text-warning'>Cluture Events</h1>
+  <div class="row">
+    <div class="col-sm-4">
+  {% for family in data %}
+      <div class="card " style="width: 20rem;">
+        <img src="{% static 'img/clutre.jpg' %}" class="card-img-top" alt="...">
+          <p><b class='text-primary'>Event :</b> {{family.Event_type}}</p>
+          <p><b class='text-primary'>Description :</b> {{family.Desc}}.</p>
+          <p><b class='text-primary'>Food:</b>{{family.Food}}</p>
+          <p><b class='text-primary'>Decoration:</b>{{family.Decoration}}</p>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+{% endblock content %}

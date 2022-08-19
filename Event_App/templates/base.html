@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel = "icon" href = "static/img/bussiness.jpg" type = "image/x-icon">
+    <title>Home</title>
+    <style>
+      body{
+       background-color: blanchedalmond;
+      }
+      .navbar-nav{
+        margin-right: auto;
+      }
+      input[type=text], input[type=email], textarea {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          }
+    </style>
+  </head>
+  <body> 
+
+    <!-- NavBar 1st -->
+  <nav class="navbar navbar-expand navbar-info bg-warning">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link text-info" href="/"><b><i class="bi bi-envelope-fill"></i> revanmore@gmail.com</b></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link text-info" href="/"><b><i class="bi bi-phone-fill"></i> +919686991198</b></a>
+      </li>
+      </ul>
+      {% for message in messages %}
+      <div id="alert" class="alert alert-warning">
+        {{message}}
+    </div>
+    {% endfor %}
+      <nav class="navbar navbar-expand-md justify-content-xl-end">
+        <ul class="navbar-nav">
+         
+        {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link text-success"><i class="bi bi-person-check"></i> {{user.username}}</a>
+          </li>
+                
+          <li class="nav-item active">
+            <a href="{% url 'logout' %}" class="nav-link text-success"><i class="bi bi-box-arrow-right"></i>Logout</a>
+          </li>
+          {% else %}                
+          <li class="nav-item active">
+            <a color='blue' class="nav-link text-info" href="{% url 'register' %}"><b><i class="bi bi-person-badge-fill"></i>Register</b></a>
+          </li>
+          <li class="nav-item active">
+            <a  class="nav-link text-info" href="{% url 'login' %}" ><b><i class="bi bi-box-arrow-in-right"></i>Login</b></a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+  </nav>
+<!-- #  Second navbar   -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+     <a href="{% url  'home' %}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" color='lightblue' fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+      </svg></a>
+        <div class="btn-group">
+          <button class="btn btn-dark dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="flase">EVENTS</button>
+          <div color="blue" class="dropdown-menu dropdown-menu" aria-labelledby="triggerId">
+            <a class="dropdown-item " id = "link-primary" href="{% url 'family_event'%}" >Family_Event</a>
+            <a class="dropdown-item" href="{% url 'cluture_event'%}">Cluture_Event</a>
+            <a class="dropdown-item" href="{% url 'charity_event'%}">Charity_Event</a>
+            <a class="dropdown-item" href="{% url 'bussiness_event'%}">Bussiness_Event</a>
+            <div class="dropdown-divider"></div>
+          </div>
+          </div>
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">About us</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'contact_view' %}">Contact Us</a>
+          </li>
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link text-success" href="{% url 'booked_events' %}"><i class="bi bi-calendar2-event-fill"></i> Event - Booked</a>
+            </li>
+            {% endif %}
+          </ul>
+      </nav>
+
+
+
+<!-- Home Pages -->
+    {% load static %}
+      {% block content %}
+          <div class="carousel-item active">
+            <img src="{% static 'main.jpg'%}" class="bg-transparent w-100" alt="">
+          </div>
+    <!-- Event Booking  Button -->
+      <div class="row g-0">
+          <div class="col-md-4"></div>
+        <div class="col-md-2">
+          <div class="card-body">
+            <h5 class="card-header"><a href="{% url 'book_event' %}"><button type="button" class="btn btn-danger">Book Event</button></a></h5>
+          </div>
+        </div>
+      </div>
+
+  <div class="container">
+    <!-- Family -->
+      <div class="card mb-3" style="max-width:1000px;"> 
+        <div class="row g-0">
+            <div class="col-md-4">
+              <img src="static/img/family.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-header"" style='color:rgb(173, 207, 22);'>Family Party</h5>
+              <p class="card-text">we have a providing lots of Family Party With food of varity and decoration with best Price</p>
+             <a class="text-primary" href="{% url 'family_event'%}">More Details</a>
+            </div>
+          </div>
+        </div>        
+      </div>
+    
+      <!-- Cluture -->
+      <div class="card mb-3" style="max-width: 1000px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="static/img/clutre.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body" >
+              <h5 class="card-header" style='color:rgb(173, 207, 22);'>Cluture Party</h5>
+              <p class="card-text"> Culture is an important aspect to the society we live in today. With the economy so hard to live in, it’s making it harder for the individuals to meet their needs. There are many cultures that are around the world that is different in many ways. One way that many cultures come together is through the cultural events today. Cultural events are events pertaining to cultures, such as a feast or festivals. By attending cultural events, you experience firsthand the diverse offering of culture and artistic expression found in a community. The Essence Music Festival and the Mardi Gras are two of the festivals that many people attend for all over the world.</p>
+              <a class="text-primary" href="{% url 'cluture_event'%}">More Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charity -->
+      <div class="card mb-3" style="max-width: 1000px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="static/img/charity.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-header" style='color:rgb(173, 207, 22);'>Charity Party</h5>
+              <p class="card-text">Any event whose primary purpose is to generate funds for a cause, charity, or non-profit is considered a charity event. Thus, the purpose is raising money.</p>
+              <a class="text-primary" href="{% url 'charity_event'%}">More Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bussiness -->
+      <div class="card mb-3" style="max-width: 1000px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="static/img/bussiness.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-header" style='color:rgb(173, 207, 22);'>Bussiness Party</h5>
+              <p class="card-text">As business party is somewhat different from the personal party, some necessary precautions shall always be in the back of a mind while planning any kind of business event. While inviting the guests comes later in the process, but we can’t ignore the fact that it is quite pivotal that the wordings on the invitation are written carefully.</p>
+              <a class="text-primary" href="{% url 'bussiness_event'%}">More Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    
+<!--Section: Contact v.2-->
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-primary">
+
+  <div style="background-color: #5196ce;">
+    <div class="container">
+
+      <!-- Grid row-->
+      <div class="row py-4 d-flex align-items-center">
+
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+          <h4 class="text-center">Get connected with us on social networks!</h4>
+        </div>
+      </div>
+      <!-- Grid row-->
+    </div>
+  </div>
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold">Social</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <p>
+            <i class="bi bi-facebook"></i>FaceBook</p>
+        <p>
+          <i class="bi bi-instagram"></i>Instagram</p>
+        <p>
+          <i class="bi bi-linkedin"></i>LinkdIn</p>
+        <p>
+          <i class="bi bi-pinterest"></i> Pinterest</p>
+        <p>
+       
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Our Services</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="{% url 'family_event' %}">FamilyEvent</a>
+        </p>
+        <p>
+          <a href="{% url 'bussiness_event' %}">BussinessEvent</a>
+        </p>
+        <p>
+          <a href="{% url 'charity_event' %}">CharityEvent</a>
+        </p>
+        <p>
+          <a href="{% url 'cluture_event' %}">CultureEvent</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Contact US</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="bi bi-geo-alt"></i> Banagalure, BA 560091, IND</p>
+        <p>
+          <i class="bi bi-envelope-check-fill"></i> event@gmail.com</p>
+        <p>
+          <i class="bi bi-telephone-outbound-fill"></i> +918073039328</p>
+        <p>
+          <i class="bi bi-telephone-outbound-fill"></i> +919686991198</p>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+  </div>
+
+
+</footer>
+{% endblock %}
+<!-- Footer -->
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script type="text/javascript">
+      setTimeout(function () {
+
+          // Closing the alert
+          $('#alert').alert('close');
+      }, 3000);
+  </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  </body>
+</html>

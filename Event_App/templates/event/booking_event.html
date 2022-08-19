@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container">
+  <div class="card text-left">
+    <div class="card-body">
+      <h4 class="card-title text-center text-primary">Book Your Event</h4>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          {{form.Name | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Email | as_crispy_field }}
+        </div>
+        <div class="form-group">
+          {{form.Mobile | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Loaction | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Pepole | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Date | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Event | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Address | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Message | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.user | as_crispy_field}}
+        </div>
+        <button class = 'btn btn-success form-control mr-2' type="submit">Submit</button>
+
+        <button type="reset" class="btn btn-warning form-control mt-4">Reset</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

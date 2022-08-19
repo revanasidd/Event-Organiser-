@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+  <!--Contact Form Here -->
+<div class = 'container' style='background-color:rgb(235, 240, 231);'>
+<h1 class="text-center"><i class="bi bi-person-rolodex"> Contact Us Here</i></h1>
+  <div class="card text-left">
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          {{form.Name | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Mobile | as_crispy_field }}
+        </div>
+        <div class="form-group">
+          {{form.Email | as_crispy_field}}
+        </div>
+        <div class="form-group">
+          {{form.Message | as_crispy_field}}
+        </div>
+        <button class = 'btn btn-success' type="submit">Contact</button>
+        <button class = 'btn btn btn-warning text-right' type="reset">Clear</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

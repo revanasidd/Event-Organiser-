@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<style>
+body{
+  background-color:rgb(111, 197, 77);
+}
+</style>
+
+
+<div class="container" style='background-color:rgb(70, 47, 201)'>
+  <h1 class='text-center text-warning'>Busseiness Events</h1>
+  <div class="row">
+    <div class="col-sm-4">
+  {% for family in data %}
+      <div class="card " style="width: 20rem;">
+        <img src="{% static 'img/bussiness.jpg' %}" class="card-img-top" alt="...">
+          <p><b class='text-primary'>Event :</b> {{family.Event_type}}</p>
+          <p><b class='text-primary'>Description :</b> {{family.Desc}}.</p>
+          <p><b class='text-primary'>Food:</b>{{family.Food}}</p>
+          <p><b class='text-primary'>Decoration:</b>{{family.Decoration}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock content %}
